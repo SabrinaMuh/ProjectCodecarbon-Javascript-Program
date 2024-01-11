@@ -268,12 +268,14 @@ function saveDataForChart(data){
     for (let index = items.length - 2; index >= 0; index--) {
         let itemBefore = items[index+1];
         item = items[index];
-        if()
+        
     }
 }
 
-function calculateTheDiff(){
-    
+function calculateTheDiff(currentValue, beforeValue){
+    if(){
+            
+    }
 }
 
 function buildLineChart(){
