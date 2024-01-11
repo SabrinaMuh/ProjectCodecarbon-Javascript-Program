@@ -273,7 +273,7 @@ function saveDataForChart(data){
 }
 
 function calculateTheDiff(currentValue, beforeValue){
-    if(){
+    if(currentValue>beforeValue){
             
     }
 }
