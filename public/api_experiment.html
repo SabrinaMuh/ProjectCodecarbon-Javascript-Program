@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Codecarbon</title>
+        <script src="../../api_script.js"></script>
+    </head>
+    <body>
+        <h1>Codecarbon - Create Experiment</h1>
+        <button onclick="window.location.href='/api';">Back to Start Page</button>
+        <br>
+        <p>Organization ID: <script>getOrganizationID()</script></p>
+        <p>Team ID: <script>getTeamID()</script></p>
+        <p>Project ID: <script>getProjectID()</script></p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br>
+
+            <label for="country_name">Country Name:</label>
+            <input type="text" id="country_name" name="country_name"><br>
+
+            <label for="country_iso_code">Country Iso Code:</label>
+            <input type="text" id="country_iso_code" name="country_iso_code"><br>
+
+            <label for="region">Region:</label>
+            <input type="text" id="region" name="region"><br>
+
+            <label for="on_cloud">On Cloud?</label>
+            <input type="checkbox" id="on_cloud" name="on_cloud" onclick="changeVisibilityCloud()"><br>
+
+            <label for="cloud_provider" style="visibility: hidden;" id="label_cp">Cloud Provider:</label>
+            <input type="text" id="cloud_provider" name="cloud_provider" style="visibility: hidden;"><br>
+
+            <label for="cloud_region" style="visibility: hidden;" id="label_cr">Cloud Region:</label>
+            <input type="text" id="cloud_region" name="cloud_region" style="visibility: hidden;"><br>
+
+            <button type="button" onclick="createExperiment()">Submit</button>
+        </form>
+        <br>
+        <button onclick="window.location.href='/api/create/project';">Back</button>
+        <!--button onclick="window.location.href='/api';">Next</button-->
+    </body>
+</html>

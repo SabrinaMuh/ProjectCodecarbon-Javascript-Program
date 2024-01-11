@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Codecarbon</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    </head>
+    <body>
+        <h1>Codecarbon - API Start Page</h1>
+        <button onclick="window.location.href='/';">Switch to Logger Mode</button>
+        <button onclick="window.location.href='/api/help';">Help</button>
+        <button onclick="window.location.href='/api/create/organisation';">New CodeCarbon</button>
+        <button class="btn btn-success" onclick="window.open('https://dashboard.codecarbon.io/','_blank')">Codecarbon API Dashboard</button>
+        <br>
+        <div><canvas id="myChart" width="400" height="400"></canvas></div>
+        <script src="api_script.js"></script>
+        <span>Organization ID: <script>getOrganizationID()</script>, </span>
+        <span>Team ID: <script>getTeamID()</script>, </span>
+        <span>Project ID: <script>getProjectID()</script>, </span>
+        <span>Experiment ID: <script>getExperimentID()</script></span>
+        <br>
+        <button onclick="getExperimentData();">Get Experiment Data</button>
+        <button onclick="getRunData();">Get Run Data</button>
+        <br><br>
+        <form>
+            <label for="run_id">Run ID:</label>
+            <input type="text" id="run_id" name="run_id"><br>
+        </form>
+        <button onclick="getEmissionsData();">Get Emissions Data</button>
+        <p>RAM: <span id="ram">0</span> kWh</p>
+        <p>RAM Power: <span id="ram_power">0</span> W</p>
+        <p>CPU: <span id="cpu">0</span> kWh</p>
+        <p>CPU Power: <span id="cpu_power">0</span> W</p>
+        <p>Electricity used since beginning: <span id="esb">0</span> kWh</p>
+    </body>
+</html>

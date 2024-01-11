@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Codecarbon</title>
+        <script src="../../api_script.js"></script>
+    </head>
+    <body>
+        <h1>Codecarbon - Create Team</h1>
+        <button onclick="window.location.href='/api';">Back to Start Page</button>
+        <br>
+        <p>Organization ID: <script>getOrganizationID()</script></p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br>
+            <button type="button" onclick="createTeam()">Submit</button>
+        </form>
+        <br>
+        <button onclick="window.location.href='/api/create/organisation';">Back</button>
+        <!--button onclick="window.location.href='/api/create/project';">Next</button-->
+    </body>
+</html>

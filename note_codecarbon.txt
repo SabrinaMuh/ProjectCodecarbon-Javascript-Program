@@ -1,0 +1,25 @@
+conda create --name codecarbon
+conda activate codecarbon
+it's better to use the command conda install -c conda-forge codecarbon
+Then codecarbon init
+To start monitor use codecarbon monitor
+
+Important: Don't change the experiment id in .codecarbon.config (you can find the file in your project file) Because if you change it there will be errors.
+
+TODO: Find a way to get data from not Python programs.
+
+Comet Tutorial for JavaScript: https://www.comet.com/docs/javascript-sdk/getting-started/
+
+Comet Tutorial for Java: https://www.comet.com/docs/java-sdk/getting-started/
+
+Working:
+Logger
+
+Working, but:
+Commet (https://www.comet.com/, mnist-comet.py, Tutorial: https://mlco2.github.io/codecarbon/comet.html): Only running with a python file and no measurring. The values are 0.
+
+Not working:
+Prometheus: not working because OfflineEmissionsTracker and EmissionsTracker don't have an argument called save_to_prometheus (You can see it clearly in the example prometheus_call.py from codecarbon)
+Codecarbon Dashboard(https://dashboard.codecarbon.io/): It doesn't show my data. They have also written something about a bug at the end of the text from the CodeCarbon Api. (Example: api_call_demo.py)
+Google Logger: There is a bug in the .exe
+

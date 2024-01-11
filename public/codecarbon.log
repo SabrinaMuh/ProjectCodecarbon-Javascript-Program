@@ -1,0 +1,83 @@
+2024-01-09 15:12:38,401-INFO-|Energy consumed for RAM : 0.000049 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:12:38,401-INFO-|Energy consumed for all CPUs : 0.000117 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:12:38,401-INFO-|0.000166 kWh of electricity used since the beginning.|/n
+2024-01-09 15:13:08,404-INFO-|Energy consumed for RAM : 0.000098 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:13:08,404-INFO-|Energy consumed for all CPUs : 0.000233 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:13:08,404-INFO-|0.000331 kWh of electricity used since the beginning.|/n
+2024-01-09 15:13:38,420-INFO-|Energy consumed for RAM : 0.000147 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:13:38,422-INFO-|Energy consumed for all CPUs : 0.000350 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:13:38,422-INFO-|0.000497 kWh of electricity used since the beginning.|/n
+2024-01-09 15:14:08,423-INFO-|Energy consumed for RAM : 0.000196 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:14:08,423-INFO-|Energy consumed for all CPUs : 0.000467 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:14:08,424-INFO-|0.000662 kWh of electricity used since the beginning.|/n
+2024-01-09 15:14:08,430-INFO-|0.000502 g.CO2eq/s mean an estimation of 15.838585701042994 kg.CO2eq/year|/n
+2024-01-09 15:14:08,430-ERROR-|type NoneType doesn't define __round__ method|/n
+Traceback (most recent call last):
+  File "C:\Users\sabri\anaconda3\envs\projectCodecarbon\Lib\site-packages\codecarbon\core\api_client.py", line 123, in _create_run
+    longitude=round(self.conf.get("longitude"), 1),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: type NoneType doesn't define __round__ method
+2024-01-09 15:14:08,430-ERROR-|ApiClient.add_emission still no run_id, aborting for this time !|/n
+2024-01-09 15:14:38,424-INFO-|Energy consumed for RAM : 0.000245 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:14:38,424-INFO-|Energy consumed for all CPUs : 0.000583 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:14:38,424-INFO-|0.000828 kWh of electricity used since the beginning.|/n
+2024-01-09 15:15:08,429-INFO-|Energy consumed for RAM : 0.000293 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:15:08,429-INFO-|Energy consumed for all CPUs : 0.000700 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:15:08,429-INFO-|0.000994 kWh of electricity used since the beginning.|/n
+2024-01-09 15:15:38,442-INFO-|Energy consumed for RAM : 0.000342 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:15:38,442-INFO-|Energy consumed for all CPUs : 0.000817 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:15:38,442-INFO-|0.001159 kWh of electricity used since the beginning.|/n
+2024-01-09 15:16:08,456-INFO-|Energy consumed for RAM : 0.000391 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:16:08,456-INFO-|Energy consumed for all CPUs : 0.000934 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:16:08,456-INFO-|0.001325 kWh of electricity used since the beginning.|/n
+2024-01-09 15:16:08,476-INFO-|0.000502 g.CO2eq/s mean an estimation of 15.838790877193162 kg.CO2eq/year|/n
+2024-01-09 15:16:08,476-ERROR-|type NoneType doesn't define __round__ method|/n
+Traceback (most recent call last):
+  File "C:\Users\sabri\anaconda3\envs\projectCodecarbon\Lib\site-packages\codecarbon\core\api_client.py", line 123, in _create_run
+    longitude=round(self.conf.get("longitude"), 1),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: type NoneType doesn't define __round__ method
+2024-01-09 15:16:08,477-ERROR-|ApiClient.add_emission still no run_id, aborting for this time !|/n
+2024-01-09 15:16:38,464-INFO-|Energy consumed for RAM : 0.000440 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:16:38,464-INFO-|Energy consumed for all CPUs : 0.001050 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:16:38,465-INFO-|0.001490 kWh of electricity used since the beginning.|/n
+2024-01-09 15:17:08,479-INFO-|Energy consumed for RAM : 0.000489 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:17:08,479-INFO-|Energy consumed for all CPUs : 0.001167 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:17:08,480-INFO-|0.001656 kWh of electricity used since the beginning.|/n
+2024-01-09 15:17:38,494-INFO-|Energy consumed for RAM : 0.000538 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:17:38,494-INFO-|Energy consumed for all CPUs : 0.001284 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:17:38,494-INFO-|0.001822 kWh of electricity used since the beginning.|/n
+2024-01-09 15:18:08,496-INFO-|Energy consumed for RAM : 0.000587 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:18:08,496-INFO-|Energy consumed for all CPUs : 0.001400 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:18:08,496-INFO-|0.001987 kWh of electricity used since the beginning.|/n
+2024-01-09 15:18:08,496-INFO-|0.000502 g.CO2eq/s mean an estimation of 15.838619623929018 kg.CO2eq/year|/n
+2024-01-09 15:18:08,496-ERROR-|type NoneType doesn't define __round__ method|/n
+Traceback (most recent call last):
+  File "C:\Users\sabri\anaconda3\envs\projectCodecarbon\Lib\site-packages\codecarbon\core\api_client.py", line 123, in _create_run
+    longitude=round(self.conf.get("longitude"), 1),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: type NoneType doesn't define __round__ method
+2024-01-09 15:18:08,496-ERROR-|ApiClient.add_emission still no run_id, aborting for this time !|/n
+2024-01-09 15:18:38,510-INFO-|Energy consumed for RAM : 0.000636 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:18:38,510-INFO-|Energy consumed for all CPUs : 0.001517 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:18:38,510-INFO-|0.002153 kWh of electricity used since the beginning.|/n
+2024-01-09 15:18:45,099-INFO-|Energy consumed for RAM : 0.000647 kWh. RAM Power : 5.868003845214844 W|/n
+2024-01-09 15:18:45,099-INFO-|Energy consumed for all CPUs : 0.001543 kWh. Total CPU Power : 14.0 W|/n
+2024-01-09 15:18:45,099-INFO-|0.002189 kWh of electricity used since the beginning.|/n
+2024-01-09 15:18:45,138-ERROR-|type NoneType doesn't define __round__ method|/n
+Traceback (most recent call last):
+  File "C:\Users\sabri\OneDrive\Desktop\projectCodecarbon\public\logger.py", line 48, in <module>
+    model = train_model()
+            ^^^^^^^^^^^^^
+  File "C:\Users\sabri\OneDrive\Desktop\projectCodecarbon\public\logger.py", line 42, in train_model
+    time.sleep(delay)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sabri\anaconda3\envs\projectCodecarbon\Lib\site-packages\codecarbon\core\api_client.py", line 123, in _create_run
+    longitude=round(self.conf.get("longitude"), 1),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: type NoneType doesn't define __round__ method
+2024-01-09 15:18:45,144-ERROR-|ApiClient.add_emission still no run_id, aborting for this time !|/n
