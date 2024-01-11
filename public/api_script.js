@@ -268,13 +268,17 @@ function saveDataForChart(data){
     for (let index = items.length - 2; index >= 0; index--) {
         let itemBefore = items[index+1];
         item = items[index];
-        
+        ramValues.push(calculateTheDiff(item.ram_energy, itemBefore.ram_energy));
+        cpuValues.push(calculateTheDiff(item.cpu_energy, itemBefore.cpu_energy));
+        esbValues.push(calculateTheDiff(item.energy_consumed, itemBefore.energy_consumed));
     }
 }
 
 function calculateTheDiff(currentValue, beforeValue){
     if(currentValue>beforeValue){
-            
+        return currentValue - beforeValue;
+    }else {
+        return beforeValue - currentValue;
     }
 }
 
