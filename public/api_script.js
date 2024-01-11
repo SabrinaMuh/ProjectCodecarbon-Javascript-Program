@@ -9,10 +9,6 @@ var cpu = 0;
 var cpuPower = 0;
 var esb = 0;
 
-var diffRam = 0;
-var diffCpu = 0;
-var diffEsb = 0;
-
 var ramValues = [0.0];
 var cpuValues = [0.0];
 var esbValues = [0.0];
@@ -264,9 +260,20 @@ function getCurrentData(data){
 }
 
 function saveDataForChart(data){
-    for (let index = 0; index < data.items.length; index++) {
-                
+    let items = data.items;
+    let item = items[items.length-1];
+    ramValues.push(item.ram_energy);
+    cpuValues.push(item.cpu_energy);
+    esbValues.push(item.energy_consumed);
+    for (let index = items.length - 2; index >= 0; index--) {
+        let itemBefore = items[index+1];
+        item = items[index];
+        if()
     }
+}
+
+function calculateTheDiff(){
+    
 }
 
 function buildLineChart(){
