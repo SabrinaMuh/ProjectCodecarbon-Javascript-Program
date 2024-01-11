@@ -9,10 +9,10 @@ var cpu = 0;
 var cpuPower = 0;
 var esb = 0;
 
-var ramValues = [0.0];
-var cpuValues = [0.0];
-var esbValues = [0.0];
-var xValues = [0];
+var ramValues = [];
+var cpuValues = [];
+var esbValues = [];
+var xValues = [];
 
 async function createOrganisation(){
     let name = document.getElementById('name').value;
@@ -261,9 +261,9 @@ function getCurrentData(data){
 
 function saveDataForChart(data){
     let items = data.items;
-    let item = items[items.length-1];
+    let item;
 
-    var counter = 1;
+    var counter = 0;
 
     for (let index = items.length - 1; index >= 0; index--) {
         item = items[index];
@@ -282,7 +282,7 @@ function saveDataForChart(data){
 function buildLineChart(){
     //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
 
-    new Chart("myChart", {
+    new Chart("myChartRam", {
         type: "line",
         data: {
           labels: xValues,
@@ -291,18 +291,57 @@ function buildLineChart(){
             label:'RAM',
             data: ramValues,
             fill: false
-          },{
+          }
+        ]},
+        options:{
+            scales: {
+                myScale: {
+                  type: 'linear',
+                  position: 'right', // `axis` is determined by the position as `'y'`
+                }
+            }
+        }
+    });
+
+    new Chart("myChartCpu", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
             borderColor: "orange",
             label:'CPU',
             data: cpuValues,
             fill: false
-          },{
+          }
+        ]},
+        options:{
+            scales: {
+                myScale: {
+                  type: 'linear',
+                  position: 'right', // `axis` is determined by the position as `'y'`
+                }
+            }
+        }
+    });
+
+    new Chart("myChartEsb", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
             borderColor: "blue",
             label:'Electricity used since beginning',
             data: esbValues,
             fill: false
-          },
+          }
         ]},
-        options:{}
-      });
+        options:{
+            scales: {
+                myScale: {
+                  type: 'linear',
+                  position: 'right', // `axis` is determined by the position as `'y'`
+                }
+            }
+        }
+    });
 }
