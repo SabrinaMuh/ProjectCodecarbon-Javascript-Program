@@ -14,6 +14,10 @@ var cpuValues = [];
 var esbValues = [];
 var xValues = [];
 
+setTimeout(() => {
+    getEmissionsData();
+}, 300000);
+
 async function createOrganisation(){
     let name = document.getElementById('name').value;
     let description = document.getElementById('description').value;
@@ -260,6 +264,12 @@ function getCurrentData(data){
 }
 
 function saveDataForChart(data){
+    if(xValues.length > 0 && ramValues.length > 0 && cpuValues.length > 0 && esbValues.length > 0){
+        ramValues = [];
+        cpuValues = [];
+        esbValues = [];
+        xValues = [];
+    } 
     let items = data.items;
     let item;
 
