@@ -1,7 +1,7 @@
-var organization_id;
-var team_id;
-var project_id;
-var experiment_id;
+var organization_id = 0;
+var team_id = 0;
+var project_id = 0;
+var experiment_id = 0;
 
 var ram = 0;
 var ramPower = 0;
@@ -246,6 +246,8 @@ async function getEmissionsData(){
             saveDataForChart(data);
         }
         buildLineChart();
+        document.getElementById("currenRunID").visibility = "visible";
+        document.getElementById("currenRunID").innerText = "Current RunID: " + run_id;
     }
 }
 
@@ -300,6 +302,9 @@ function saveDataForChart(data){
 
 function buildLineChart(){
     //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
+    document.getElementById("myChartRam").style.display = "block";
+    document.getElementById("myChartCpu").style.display = "block";
+    document.getElementById("myChartEsb").style.display = "block";
 
     new Chart("myChartRam", {
         type: "line",

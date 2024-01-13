@@ -11,9 +11,9 @@
         <button onclick="window.location.href='/api/create/organisation';">New CodeCarbon</button>
         <button class="btn btn-success" onclick="window.open('https://dashboard.codecarbon.io/','_blank')">Codecarbon API Dashboard</button>
         <br>
-        <div><canvas id="myChartRam" width="400" height="400"></canvas></div>
-        <div><canvas id="myChartCpu" width="400" height="400"></canvas></div>
-        <div><canvas id="myChartEsb" width="400" height="400"></canvas></div>
+        <div><canvas id="myChartRam" width="400" height="400" style="display: none;"></canvas></div>
+        <div><canvas id="myChartCpu" width="400" height="400" style="display: none;"></canvas></div>
+        <div><canvas id="myChartEsb" width="400" height="400" style="display: none;"></canvas></div>
         <script src="api_script.js"></script>
         <span>Organization ID: <script>getOrganizationID()</script>, </span>
         <span>Team ID: <script>getTeamID()</script>, </span>
@@ -26,6 +26,7 @@
         <form>
             <label for="run_id">Run ID:</label>
             <input type="text" id="run_id" name="run_id"><br>
+            <span id="currenRunID"></span>
         </form>
         <button onclick="getEmissionsData();">Get Emissions Data</button>
         <p>RAM: <span id="ram">0</span> kWh</p>
