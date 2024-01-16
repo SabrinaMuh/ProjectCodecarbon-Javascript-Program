@@ -5,7 +5,6 @@ Second version works with the API from Codecarbon.
 
 On the website you can switch between these versions.
 
-
 How do install CodeCarbon?
 Commands
 1. conda create --name codecarbon

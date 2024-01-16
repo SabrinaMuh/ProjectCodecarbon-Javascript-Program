@@ -318,12 +318,8 @@ function buildLineChart(){
           }
         ]},
         options:{
-            scales: {
-                myScale: {
-                  type: 'linear',
-                  position: 'right', // `axis` is determined by the position as `'y'`
-                }
-            }
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 
@@ -339,12 +335,8 @@ function buildLineChart(){
           }
         ]},
         options:{
-            scales: {
-                myScale: {
-                  type: 'linear',
-                  position: 'right', // `axis` is determined by the position as `'y'`
-                }
-            }
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 
@@ -360,12 +352,8 @@ function buildLineChart(){
           }
         ]},
         options:{
-            scales: {
-                myScale: {
-                  type: 'linear',
-                  position: 'right', // `axis` is determined by the position as `'y'`
-                }
-            }
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 }
