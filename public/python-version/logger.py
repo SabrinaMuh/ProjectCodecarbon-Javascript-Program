@@ -35,8 +35,8 @@ def stop_logger():
 
 
 def train_model():
-    occurrence = 60 * 24 * 365 * 100
-    delay = 30
+    occurrence = 60 * 24
+    delay = 60  # Seconds
     for i in range(occurrence):
         print(f"{occurrence * delay - i * delay} seconds before ending script...")
         time.sleep(delay)
