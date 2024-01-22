@@ -11,6 +11,8 @@ var cpuValues = [];
 var esbValues = [];
 var xValues = [];
 
+var running = true;
+
 getData();
 buildLineChart();
 
@@ -25,14 +27,21 @@ localStorage.setItem('ramValues', JSON.stringify(ramValues));
 localStorage.setItem("cpuValues", JSON.stringify(cpuValues));
 localStorage.setItem("esbValues", JSON.stringify(esbValues));
 localStorage.setItem("xValues", JSON.stringify(xValues));
+//localStorage.setItem("running", JSON.stringify(running));
 
-setTimeout(() => {
-    document.location.reload();
-}, 10000);
+if(running){
+    setTimeout(() => {
+        //document.location.reload();
+        getData();
+    }, 10000);
+}else{
+    document.write("Codecarbon was finished")
+}
 
 function getData(){
+    //running = localStorage.getItem("running");
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "file.txt", false);
+    rawFile.open("GET", "log.txt", false);
     rawFile.onreadystatechange = function () {
         if(rawFile.readyState === 4)  {
             if(rawFile.status === 200 || rawFile.status == 0) {
@@ -67,77 +76,29 @@ function getData(){
                         esb = textESB.split("]")[1].split(" ")[1];
                         esbValues.push(esb);
                         xValues.push(counter++);
-                        console.log(textRAM);
-                        console.log(textCPU);
-                        console.log(textESB);
-                    }else{
+                        if(xValues.length > 5){
+                            xValues.shift();
+                            ramValues.shift();
+                            cpuValues.shift();
+                            esbValues.shift();
+                        }
+                    } else if(textCPU.includes("Aborted!")){
+                        console.log("here");
+                        running = false;
+                    } else{
                         getData();
                     }
                 }else{
                     document.write("Data are loading...")
                 }
-                /*if (allText.length != 0){
-                    let currentRAMValues = localStorage.getItem('ramValues');
-                    let currentCPUValues = localStorage.getItem('cpuValues');
-                    let currentESBValues = localStorage.getItem('esbValues');
-                    let currenXValues = localStorage.getItem('xValues');
-                    counter = localStorage.getItem('counter');
-                    ramValues = currentRAMValues ? JSON.parse(currentRAMValues) : [0.0];
-                    cpuValues = currentCPUValues ? JSON.parse(currentCPUValues) : [0.0];
-                    esbValues = currentESBValues ? JSON.parse(currentESBValues) : [0.0];
-                    xValues = currenXValues ? JSON.parse(currenXValues) : [0];
-
-                    //To see the log
-                    var textArray = allText.split('/n');
-                    textArray.forEach(element => {
-                        console.log(element);
-                    });
-
-                    var textRAM = textArray[textArray.length - 4];
-                    var textCPU = textArray[textArray.length - 3];
-                    var textESB = textArray[textArray.length - 2];
-                    if (!textRAM.includes("ERROR") && !textCPU.includes("ERROR") && !textESB.includes("ERROR")){
-                        var messageRAM = textRAM.split('|');
-                        var messageCPU = textCPU.split('|');
-                        var messageESB = textESB.split('|');
-
-                        var splitValuesRAM = messageRAM[1].split(':');
-                        ram = splitValuesRAM[1].split(' ')[1];
-                        ramPower = splitValuesRAM[2].split(' ')[1];
-
-                        var splitValuesCPU = messageCPU[1].split(':');
-                        cpu = splitValuesCPU[1].split(' ')[1];
-                        cpuPower = splitValuesCPU[2].split(' ')[1];
-
-                        esb = messageESB[1].split(' ')[0];
-
-                        ramValues.push(parseFloat(ram));
-
-                        cpuValues.push(parseFloat(cpu));
-
-                        esbValues.push(parseFloat(esb));
-
-                        xValues.push(++counter);
-
-                    }else{
-                        document.write("There was a error message in codecarbon. Please check console.");
-                        ram = localStorage.getItem("ram");
-                        ramPower = localStorage.getItem("ramPower");
-                        cpu = localStorage.getItem("cpu");
-                        cpuPower = localStorage.getItem("cpuPower");
-                        esb = localStorage.getItem("esb");
-                    }
-                }else{
-                    document.write("Data are loading...")
-                }*/
             }
         }
     }
     rawFile.send(null)
-    console.log(xValues);
+    /*console.log(xValues);
     console.log(ramValues);
     console.log(cpuValues);
-    console.log(esbValues);
+    console.log(esbValues);*/
 }
 
 /* first version of logger (python version)
@@ -236,7 +197,10 @@ function buildLineChart(){
             fill: false
           },
         ]},
-        options:{}
+        options:{
+            responsive: true,
+            maintainAspectRatio: false
+        }
       });
 }
 
