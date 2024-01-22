@@ -74,7 +74,7 @@ function getData(){
                     } else{
                         setTimeout(() => {
                             getData();
-                        }, 10000);
+                        }, 1000);
                     }
                 }else{
                     document.getElementById('loading').innerText = "Data is loading...";
