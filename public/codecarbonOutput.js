@@ -5,11 +5,17 @@ var cpu = 0;
 var cpuPower = 0;
 var esb = 0;
 var counter = 0;
+var counterDiff = 1;
 
 var ramValues = [];
 var cpuValues = [];
 var esbValues = [];
 var xValues = [];
+
+var diffRamValues = [0];
+var diffCpuValues = [0];
+var diffEsbValues = [0];
+var diffXValues = [0];
 
 var running = true;
 
@@ -42,6 +48,10 @@ function getData(){
                         esb = textESB.split("]")[1].split(" ")[1];
                         esbValues.push(esb);
                         xValues.push(counter++);
+
+                        if(xValues.length>=2){
+                            calculateDiff();
+                        }
                         
                         if(xValues.length > 5){
                             xValues.shift();
@@ -82,6 +92,24 @@ function getData(){
     console.log(esbValues);
 }
 
+function calculateDiff(){
+    diffXValues.push(counterDiff++);
+
+    if(diffXValues.length > 5){
+        diffXValues.shift();
+    }
+
+    diffRamValues = [0];
+    diffCpuValues = [0];
+    diffEsbValues = [0];
+    for (let index = 0; index < xValues.length-1; index++) {
+        diffRamValues.push(ramValues[index + 1] - ramValues[index]);
+        diffCpuValues.push(cpuValues[index + 1] - cpuValues[index]);
+        diffEsbValues.push(esbValues[index + 1] - esbValues[index]);
+        console.log("DiffXValues:" + diffXValues);
+        console.log("DiffRamValues:" + diffRamValues);
+    }
+}
 /* first version of logger (python version)
 function getData(){
     var rawFile = new XMLHttpRequest();
@@ -175,6 +203,33 @@ function buildLineChart(){
             borderColor: "blue",
             label:'Electricity used since beginning',
             data: esbValues,
+            fill: false
+          },
+        ]},
+        options:{
+            responsive: true,
+            maintainAspectRatio: false
+        }
+      });
+
+      new Chart("myChartDiff", {
+        type: "line",
+        data: {
+          labels: diffXValues,
+          datasets: [{
+            borderColor: "red",
+            label:'Difference RAM',
+            data: diffRamValues,
+            fill: false
+          },{
+            borderColor: "orange",
+            label:'Difference CPU',
+            data: diffCpuValues,
+            fill: false
+          },{
+            borderColor: "blue",
+            label:'Difference Electricity used since beginning',
+            data: diffEsbValues,
             fill: false
           },
         ]},
