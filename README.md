@@ -14,3 +14,6 @@ Commands
 How do run Codecarbon?
 4. codecarbon init
 5. codecarbon monitor 2> <Path To ProjectCodecarbon-Javascript-Program File>
+
+
+Error message info: "Cannot read properties of undefined (reading 'skip')" is a bug from Chart.js. Not from this program.
