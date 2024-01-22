@@ -16,21 +16,7 @@ var running = true;
 getData();
 buildLineChart();
 
-/*localStorage.setItem("ram", ram);
-localStorage.setItem("ramPower", ramPower);
-localStorage.setItem("cpu", cpu);
-localStorage.setItem("cpuPower", cpuPower);
-localStorage.setItem("esb", esb);
-localStorage.setItem("counter", counter);
-
-localStorage.setItem('ramValues', JSON.stringify(ramValues));
-localStorage.setItem("cpuValues", JSON.stringify(cpuValues));
-localStorage.setItem("esbValues", JSON.stringify(esbValues));
-localStorage.setItem("xValues", JSON.stringify(xValues));*/
-//localStorage.setItem("running", JSON.stringify(running));
-
 function getData(){
-    //running = localStorage.getItem("running");
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "log.txt", false);
     rawFile.onreadystatechange = function () {
@@ -40,17 +26,6 @@ function getData(){
                 var textArray = allText.split('\n');
                 console.log(allText);
                 if(textArray.length>20){
-                    /*let currentRAMValues = localStorage.getItem('ramValues');
-                    let currentCPUValues = localStorage.getItem('cpuValues');
-                    let currentESBValues = localStorage.getItem('esbValues');
-                    let currenXValues = localStorage.getItem('xValues');
-
-                    counter = localStorage.getItem('counter');
-                    ramValues = currentRAMValues ? JSON.parse(currentRAMValues) : [0.0];
-                    cpuValues = currentCPUValues ? JSON.parse(currentCPUValues) : [0.0];
-                    esbValues = currentESBValues ? JSON.parse(currentESBValues) : [0.0];
-                    xValues = currenXValues ? JSON.parse(currenXValues) : [0];*/
-
                     var textRAM = textArray[textArray.length - 4];
                     var textCPU = textArray[textArray.length - 3];
                     var textESB = textArray[textArray.length - 2];
@@ -85,10 +60,8 @@ function getData(){
                             getData();
                         }, 10000);
                     } else if(textRAM.includes("Aborted!") || textCPU.includes("Aborted!") || textESB.includes("Aborted!")){
-                        //console.log("here1");
                         document.getElementById("loading").innerText = "Codecarbon is aborted";
                     } else{
-                        //console.log("here2");
                         setTimeout(() => {
                             getData();
                         }, 10000);
@@ -103,10 +76,10 @@ function getData(){
         }
     }
     rawFile.send(null);
-    /*console.log(xValues);
+    console.log(xValues);
     console.log(ramValues);
     console.log(cpuValues);
-    console.log(esbValues);*/
+    console.log(esbValues);
 }
 
 /* first version of logger (python version)
@@ -210,24 +183,4 @@ function buildLineChart(){
             maintainAspectRatio: false
         }
       });
-}
-
-function writeRAM(){
-    document.write(ram);
-}
-
-function writeRAMPower(){
-    document.write(ramPower);
-}
-
-function writeCPU(){
-    document.write(cpu);
-}
-
-function writeCPUPower(){
-    document.write(cpuPower);
-}
-
-function writeESB(){
-    document.write(esb);
 }
