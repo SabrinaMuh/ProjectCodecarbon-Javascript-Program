@@ -53,11 +53,15 @@ function getData(){
                             calculateDiff();
                         }
                         
-                        if(xValues.length > 5){
+                        if(xValues.length > 10){
                             xValues.shift();
                             ramValues.shift();
                             cpuValues.shift();
                             esbValues.shift();
+                            diffXValues.shift();
+                            diffRamValues.shift();
+                            diffCpuValues.shift();
+                            diffEsbValues.shift();
                         }
                         document.getElementById('ram_index').innerText = ram;
                         document.getElementById('ram_power_index').innerText = ramPower;
@@ -86,29 +90,17 @@ function getData(){
         }
     }
     rawFile.send(null);
-    console.log(xValues);
+    /*console.log(xValues);
     console.log(ramValues);
     console.log(cpuValues);
-    console.log(esbValues);
+    console.log(esbValues);*/
 }
 
 function calculateDiff(){
     diffXValues.push(counterDiff++);
-
-    if(diffXValues.length > 5){
-        diffXValues.shift();
-    }
-
-    diffRamValues = [0];
-    diffCpuValues = [0];
-    diffEsbValues = [0];
-    for (let index = 0; index < xValues.length-1; index++) {
-        diffRamValues.push(ramValues[index + 1] - ramValues[index]);
-        diffCpuValues.push(cpuValues[index + 1] - cpuValues[index]);
-        diffEsbValues.push(esbValues[index + 1] - esbValues[index]);
-        console.log("DiffXValues:" + diffXValues);
-        console.log("DiffRamValues:" + diffRamValues);
-    }
+    diffRamValues.push(ramValues[ramValues.length - 1] - ramValues[ramValues.length - 2]);
+    diffCpuValues.push(cpuValues[cpuValues.length - 1] - cpuValues[cpuValues.length - 2]);
+    diffEsbValues.push(esbValues[esbValues.length - 1] - esbValues[esbValues.length - 2]);
 }
 /* first version of logger (python version)
 function getData(){
