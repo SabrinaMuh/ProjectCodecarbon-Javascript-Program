@@ -8,12 +8,18 @@
         <h1>Codecarbon - Logger (Version 1)</h1>
         <!--div tag has to be before script to prevent error (js-file can't find it if we write the script before)-->
         <div><canvas id="myChart" width="400" height="400"></canvas></div>
-        <script src="codecarbonOutput.js"></script>
-        <p>RAM: <script>writeRAM()</script> kWh</p>
+        <!--p>RAM: <script>writeRAM()</script> kWh</p>
         <p>RAM Power: <script>writeRAMPower()</script> W</p>
         <p>CPU: <script>writeCPU()</script> kWh</p>
         <p>CPU Power: <script>writeCPUPower()</script> W</p>
-        <p>Electricity used since beginning: <script>writeESB()</script> kWh</p>
+        <p>Electricity used since beginning: <script>writeESB()</script> kWh</p-->
+        <p id="loading"></p>
+        <p>RAM: <span id="ram_index">0</span> kWh</p>
+        <p>RAM Power: <span id="ram_power_index">0</span> W</p>
+        <p>CPU: <span id="cpu_index">0</span> kWh</p>
+        <p>CPU Power: <span id="cpu_power_index">0</span> W</p>
+        <p>Electricity used since beginning: <span id="esb_index">0</span> kWh</p>
+        <script src="codecarbonOutput.js"></script>
         <p><button onclick="window.location.href='/api';">Switch to Code Carbon API</button></p>
     </body>
 </html>

@@ -16,7 +16,7 @@ var running = true;
 getData();
 buildLineChart();
 
-localStorage.setItem("ram", ram);
+/*localStorage.setItem("ram", ram);
 localStorage.setItem("ramPower", ramPower);
 localStorage.setItem("cpu", cpu);
 localStorage.setItem("cpuPower", cpuPower);
@@ -26,17 +26,8 @@ localStorage.setItem("counter", counter);
 localStorage.setItem('ramValues', JSON.stringify(ramValues));
 localStorage.setItem("cpuValues", JSON.stringify(cpuValues));
 localStorage.setItem("esbValues", JSON.stringify(esbValues));
-localStorage.setItem("xValues", JSON.stringify(xValues));
+localStorage.setItem("xValues", JSON.stringify(xValues));*/
 //localStorage.setItem("running", JSON.stringify(running));
-
-if(running){
-    setTimeout(() => {
-        //document.location.reload();
-        getData();
-    }, 10000);
-}else{
-    document.write("Codecarbon was finished")
-}
 
 function getData(){
     //running = localStorage.getItem("running");
@@ -49,7 +40,7 @@ function getData(){
                 var textArray = allText.split('\n');
                 console.log(allText);
                 if(textArray.length>20){
-                    let currentRAMValues = localStorage.getItem('ramValues');
+                    /*let currentRAMValues = localStorage.getItem('ramValues');
                     let currentCPUValues = localStorage.getItem('cpuValues');
                     let currentESBValues = localStorage.getItem('esbValues');
                     let currenXValues = localStorage.getItem('xValues');
@@ -58,7 +49,7 @@ function getData(){
                     ramValues = currentRAMValues ? JSON.parse(currentRAMValues) : [0.0];
                     cpuValues = currentCPUValues ? JSON.parse(currentCPUValues) : [0.0];
                     esbValues = currentESBValues ? JSON.parse(currentESBValues) : [0.0];
-                    xValues = currenXValues ? JSON.parse(currenXValues) : [0];
+                    xValues = currenXValues ? JSON.parse(currenXValues) : [0];*/
 
                     var textRAM = textArray[textArray.length - 4];
                     var textCPU = textArray[textArray.length - 3];
@@ -76,25 +67,42 @@ function getData(){
                         esb = textESB.split("]")[1].split(" ")[1];
                         esbValues.push(esb);
                         xValues.push(counter++);
+                        
                         if(xValues.length > 5){
                             xValues.shift();
                             ramValues.shift();
                             cpuValues.shift();
                             esbValues.shift();
                         }
-                    } else if(textCPU.includes("Aborted!")){
-                        console.log("here");
-                        running = false;
+                        document.getElementById('ram_index').innerText = ram;
+                        document.getElementById('ram_power_index').innerText = ramPower;
+                        document.getElementById('cpu_index').innerText = cpu;
+                        document.getElementById('cpu_power_index').innerText = cpuPower;
+                        document.getElementById('esb_index').innerText = esb;
+                        document.getElementById('loading').innerText = "";
+                        buildLineChart();
+                        setTimeout(() => {
+                            getData();
+                        }, 10000);
+                    } else if(textRAM.includes("Aborted!") || textCPU.includes("Aborted!") || textESB.includes("Aborted!")){
+                        //console.log("here1");
+                        document.getElementById("loading").innerText = "Codecarbon is aborted";
                     } else{
-                        getData();
+                        //console.log("here2");
+                        setTimeout(() => {
+                            getData();
+                        }, 10000);
                     }
                 }else{
-                    document.write("Data are loading...")
+                    document.getElementById('loading').innerText = "Data is loading...";
+                    setTimeout(() => {
+                        getData();
+                    }, 10000);
                 }
             }
         }
     }
-    rawFile.send(null)
+    rawFile.send(null);
     /*console.log(xValues);
     console.log(ramValues);
     console.log(cpuValues);
