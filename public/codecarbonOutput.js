@@ -230,11 +230,29 @@ function buildLineChart(){
         ]},
         options:{
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            tooltips: {
+                titleFontSize: 0,
+                titleMarginBottom: 0,
+                bodyFontSize: 14
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                        beginAtZero: true
+                    }
+                }]
+            },
         }
       });
 
-      new Chart("myChartDiff", {
+    new Chart("myChartDiff", {
         type: "line",
         data: {
           labels: diffXValues,
@@ -257,7 +275,25 @@ function buildLineChart(){
         ]},
         options:{
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            tooltips: {
+                titleFontSize: 0,
+                titleMarginBottom: 0,
+                bodyFontSize: 14
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                        beginAtZero: true
+                    }
+                }]
+            },
         }
       });
 }
