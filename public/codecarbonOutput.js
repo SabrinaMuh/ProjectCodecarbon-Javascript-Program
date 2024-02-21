@@ -32,6 +32,20 @@ function getData(){
                 var textArray = allText.split('\n');
                 console.log(allText);
                 if(textArray.length>20){
+
+                    if(textArray.length>23){
+                        counter = localStorage.getItem('counter');
+                        xValues = JSON.parse(localStorage.getItem('xValues'));
+                        ramValues = JSON.parse(localStorage.getItem('ramValues'));
+                        cpuValues = JSON.parse(localStorage.getItem('cpuValues'));
+                        esbValues = JSON.parse(localStorage.getItem('esbValues'));
+                        counterDiff = localStorage.getItem('counterDiff');
+                        diffXValues = JSON.parse(localStorage.getItem('diffXValues'));
+                        diffRamValues = JSON.parse(localStorage.getItem('diffRamValues'));
+                        diffCpuValues = JSON.parse(localStorage.getItem('diffCpuValues'));
+                        diffEsbValues = JSON.parse(localStorage.getItem('diffEsbValues'));
+                    }
+
                     var textRAM = textArray[textArray.length - 4];
                     var textCPU = textArray[textArray.length - 3];
                     var textESB = textArray[textArray.length - 2];
@@ -39,21 +53,24 @@ function getData(){
                     if(textRAM.includes("RAM") && textCPU.includes("CPU") && textESB.includes("electricity used since the beginning")){
                         ram = textRAM.split("]")[1].split(":")[1].split(" ")[1];
                         ramPower = textRAM.split("]")[1].split(":")[2].split(" ")[1];
-                        ramValues.push(ram);
+                        
 
                         cpu = textCPU.split("]")[1].split(":")[1].split(" ")[1];
                         cpuPower = textCPU.split("]")[1].split(":")[2].split(" ")[1];
-                        cpuValues.push(cpu);
 
                         esb = textESB.split("]")[1].split(" ")[1];
-                        esbValues.push(esb);
-                        xValues.push(counter++);
 
-                        if(xValues.length>=2){
-                            calculateDiff();
+                        if(ram != ramValues[ramValues.length-1] && cpu != cpuValues[cpuValues.length-1] && esb != esbValues[esbValues.length-1]){
+                            ramValues.push(ram);
+                            cpuValues.push(cpu);
+                            esbValues.push(esb);
+                            xValues.push(counter++);
+                            if(xValues.length>=2){
+                                calculateDiff();
+                            }
                         }
                         
-                        if(xValues.length > 10){
+                        /*if(xValues.length > 10){
                             xValues.shift();
                             ramValues.shift();
                             cpuValues.shift();
@@ -62,13 +79,26 @@ function getData(){
                             diffRamValues.shift();
                             diffCpuValues.shift();
                             diffEsbValues.shift();
-                        }
+                        }*/
+
                         document.getElementById('ram_index').innerText = ram;
                         document.getElementById('ram_power_index').innerText = ramPower;
                         document.getElementById('cpu_index').innerText = cpu;
                         document.getElementById('cpu_power_index').innerText = cpuPower;
                         document.getElementById('esb_index').innerText = esb;
                         document.getElementById('loading').innerText = "";
+
+                        localStorage.setItem("counter", counter);
+                        localStorage.setItem("xValues", JSON.stringify(xValues));
+                        localStorage.setItem("ramValues", JSON.stringify(ramValues));
+                        localStorage.setItem("cpuValues", JSON.stringify(cpuValues));
+                        localStorage.setItem("esbValues", JSON.stringify(esbValues));
+                        localStorage.setItem("counterDiff", counterDiff);
+                        localStorage.setItem("diffXValues", JSON.stringify(diffXValues));
+                        localStorage.setItem("diffRamValues", JSON.stringify(diffRamValues));
+                        localStorage.setItem("diffCpuValues", JSON.stringify(diffCpuValues));
+                        localStorage.setItem("diffEsbValues", JSON.stringify(diffEsbValues));
+
                         buildLineChart();
                         setTimeout(() => {
                             getData();
