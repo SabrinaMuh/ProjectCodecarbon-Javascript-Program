@@ -15,9 +15,8 @@ This is a JS program that works with CodeCarbon.
 There are two versions of the Real-Time Plotting application.
 On the website, you can switch between these versions.
 
-### Python-only Version
-<!-- needs a bit more detail how to execute it -->
-The Python-only version works with a logger and only with Python programs.
+### Logger Version
+Works with the file log.txt and shows the data in a plot. The second plot shows the difference between the current value and the previous value.
 
 ### API Version
 
