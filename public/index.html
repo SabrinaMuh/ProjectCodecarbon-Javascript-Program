@@ -3,14 +3,84 @@
     <head>
         <title>Codecarbon</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <style>
+            .container{
+                width: 1200px;
+                max-width: 1200px;
+                overflow-x: scroll;
+            }
+
+            .containerDiff{
+                width: 1200px;
+                max-width: 1200px;
+                overflow-x: scroll;
+            }
+
+            .legend{
+                width: 1200px;
+                max-width: 1200px;
+            }
+
+            .containerBody{
+                height: 400px;
+            }
+
+            .containerBodyDiff{
+                height: 400px;
+            }
+
+            .box{
+                display: inline;
+                float: left;
+                height: 20px;
+                width: 20px;
+                margin-bottom: 15px;
+                border: 1px solid black;
+                clear: both;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            .orange {
+                background-color: orange;
+            }
+
+            .blue {
+                background-color: blue;
+            }
+        </style>
     </head>
     <body>
         <h1>Codecarbon - Logger (Version 1)</h1>
         <!--div tag has to be before script to prevent error (js-file can't find it if we write the script before)-->
         <p>Data Chart</p>
-        <div><canvas id="myChart" width="400" height="400"></canvas></div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div class = "container">
+                    <div class = "containerBody">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div class="legend">
+            <div><div class="box red"></div>RAM</div>
+            <div><div class="box orange"></div>CPU</div>
+            <div><div class="box blue"></div>Engery used sinced beginning</div>
+        </div-->
+        <br><br>
         <p>Difference Chart</p>
-        <div><canvas id="myChartDiff" width="400" height="400"></canvas></div>
+        <div class="chartWrapperDiff">
+            <div class="chartAreaWrapperDiff">
+                <div class = "containerDiff">
+                    <div class = "containerBodyDiff">
+                        <canvas id="myChartDiff"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <p id="loading"></p>
         <p>RAM: <span id="ram_index">0</span> kWh</p>
         <p>RAM Power: <span id="ram_power_index">0</span> W</p>

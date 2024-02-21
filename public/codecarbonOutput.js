@@ -132,6 +132,122 @@ function calculateDiff(){
     diffCpuValues.push(cpuValues[cpuValues.length - 1] - cpuValues[cpuValues.length - 2]);
     diffEsbValues.push(esbValues[esbValues.length - 1] - esbValues[esbValues.length - 2]);
 }
+
+function buildLineChart(){
+    //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
+
+    new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            borderColor: "red",
+            label:'RAM',
+            data: ramValues,
+            fill: false
+          },{
+            borderColor: "orange",
+            label:'CPU',
+            data: cpuValues,
+            fill: false
+          },{
+            borderColor: "blue",
+            label:'Electricity used since beginning',
+            data: esbValues,
+            fill: false
+          },
+        ]},
+        options:{
+            responsive: true,
+            maintainAspectRatio: false,
+            /*legend: {
+                display: false,
+            },*/
+            tooltips: {
+                titleFontSize: 0,
+                titleMarginBottom: 0,
+                bodyFontSize: 14
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    const containerBody = document.querySelector('.containerBody');
+    const lengthXValues = xValues.length;
+
+
+    if(lengthXValues > 10){
+        const newWidth = 1200 + ((lengthXValues - 10) * 30);
+        containerBody.style.width = `${newWidth}px`;
+    }
+
+    new Chart("myChartDiff", {
+        type: "line",
+        data: {
+          labels: diffXValues,
+          datasets: [{
+            borderColor: "red",
+            label:'Difference RAM',
+            data: diffRamValues,
+            fill: false
+          },{
+            borderColor: "orange",
+            label:'Difference CPU',
+            data: diffCpuValues,
+            fill: false
+          },{
+            borderColor: "blue",
+            label:'Difference Electricity used since beginning',
+            data: diffEsbValues,
+            fill: false
+          },
+        ]},
+        options:{
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: {
+                titleFontSize: 0,
+                titleMarginBottom: 0,
+                bodyFontSize: 14
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+      });
+    
+      const containerBodyDiff = document.querySelector('.containerBodyDiff');
+      const lengthDiffXValues = diffXValues.length;
+  
+  
+      if(lengthDiffXValues > 10){
+          const newWidth = 1200 + ((lengthDiffXValues - 10) * 30);
+          containerBodyDiff.style.width = `${newWidth}px`;
+      }
+}
+
 /* first version of logger (python version)
 function getData(){
     var rawFile = new XMLHttpRequest();
@@ -203,97 +319,3 @@ function getData(){
     console.log(cpuValues);
     console.log(esbValues);
 }*/
-
-function buildLineChart(){
-    //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
-
-    new Chart("myChart", {
-        type: "line",
-        data: {
-          labels: xValues,
-          datasets: [{
-            borderColor: "red",
-            label:'RAM',
-            data: ramValues,
-            fill: false
-          },{
-            borderColor: "orange",
-            label:'CPU',
-            data: cpuValues,
-            fill: false
-          },{
-            borderColor: "blue",
-            label:'Electricity used since beginning',
-            data: esbValues,
-            fill: false
-          },
-        ]},
-        options:{
-            responsive: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                titleFontSize: 0,
-                titleMarginBottom: 0,
-                bodyFontSize: 14
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 14,
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 14,
-                        beginAtZero: true
-                    }
-                }]
-            },
-        }
-      });
-
-    new Chart("myChartDiff", {
-        type: "line",
-        data: {
-          labels: diffXValues,
-          datasets: [{
-            borderColor: "red",
-            label:'Difference RAM',
-            data: diffRamValues,
-            fill: false
-          },{
-            borderColor: "orange",
-            label:'Difference CPU',
-            data: diffCpuValues,
-            fill: false
-          },{
-            borderColor: "blue",
-            label:'Difference Electricity used since beginning',
-            data: diffEsbValues,
-            fill: false
-          },
-        ]},
-        options:{
-            responsive: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                titleFontSize: 0,
-                titleMarginBottom: 0,
-                bodyFontSize: 14
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 14,
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 14,
-                        beginAtZero: true
-                    }
-                }]
-            },
-        }
-      });
-}
