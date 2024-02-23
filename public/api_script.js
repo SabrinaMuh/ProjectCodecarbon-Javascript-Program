@@ -276,7 +276,6 @@ function saveDataForChart(data){
     let item;
 
     var counter = 0;
-    var amountToDelete = 0;
 
     for (let index = items.length - 1; index >= 0; index--) {
         item = items[index];
@@ -284,14 +283,6 @@ function saveDataForChart(data){
         cpuValues.push(item.cpu_energy);
         esbValues.push(item.energy_consumed);
         xValues.push(counter++);
-    }
-
-    if(items.length > 5){
-        amountToDelete = items.length - 5;
-        xValues.splice(0,amountToDelete);
-        ramValues.splice(0,amountToDelete);
-        cpuValues.splice(0, amountToDelete);
-        esbValues.splice(0, amountToDelete);
     }
 
     console.log(ramValues);
@@ -362,7 +353,7 @@ function buildLineChart(){
     const containerBodyEsb = document.querySelector('.containerBodyEsb');
     const lengthXValues = xValues.length;
 
-    if(lengthXValues > 10){
+    if(lengthXValues > 5){
         const newWidth = 700 + ((lengthXValues - 10) * 50);
         containerBodyRam.style.width = `${newWidth}px`;
         containerBodyCpu.style.width = `${newWidth}px`;
