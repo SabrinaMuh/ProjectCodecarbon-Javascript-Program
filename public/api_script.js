@@ -354,7 +354,7 @@ function buildLineChart(){
     const lengthXValues = xValues.length;
 
     if(lengthXValues > 5){
-        const newWidth = 700 + ((lengthXValues - 10) * 50);
+        const newWidth = 700 + ((lengthXValues - 5) * 50);
         containerBodyRam.style.width = `${newWidth}px`;
         containerBodyCpu.style.width = `${newWidth}px`;
         containerBodyEsb.style.width = `${newWidth}px`;

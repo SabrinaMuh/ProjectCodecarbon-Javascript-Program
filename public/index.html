@@ -34,8 +34,18 @@
     </head>
     <body>
         <h1>Codecarbon - Logger (Version 1)</h1>
-        <!--div tag has to be before script to prevent error (js-file can't find it if we write the script before)-->
-        <p>Data Chart</p>
+        <form>
+           <h4>Filter Data</h4>
+           <label for="start">Start:</label>
+           <input type="number" id="start" name="start" min="0">
+           <label for="end">End:</label>
+           <input type="number" id="end" name="end" min="0">
+           <p id="errorMessage" style="color: red; display: none;">Please valid values</p>
+           <br>
+           <button type='button' onclick="filterData()">Submit</button>
+           <button type='button' onclick="removeFilter()">Remove Filter</button>
+        </form>
+        <h2>Data Chart</h2>
         <ul class="legend">
             <li><span class="red"></span>RAM</li>
             <li><span class="orange"></span>CPU</li>
@@ -46,13 +56,14 @@
             <div class="chartAreaWrapper">
                 <div class = "container">
                     <div class = "containerBody">
+                        <!--Tags with charts have to be before script to prevent error (js-file can't find it if we write the script before)-->
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        <p>Difference Chart</p>
+        <h2>Difference Chart</h2>
         <ul class="legend">
             <li><span class="red"></span>Difference RAM</li>
             <li><span class="orange"></span>Difference CPU</li>
