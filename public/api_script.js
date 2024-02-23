@@ -356,4 +356,16 @@ function buildLineChart(){
             maintainAspectRatio: false
         }
     });
+
+    const containerBodyRam = document.querySelector('.containerBodyRam');
+    const containerBodyCpu = document.querySelector('.containerBodyCpu');
+    const containerBodyEsb = document.querySelector('.containerBodyEsb');
+    const lengthXValues = xValues.length;
+
+    if(lengthXValues > 10){
+        const newWidth = 700 + ((lengthXValues - 10) * 50);
+        containerBodyRam.style.width = `${newWidth}px`;
+        containerBodyCpu.style.width = `${newWidth}px`;
+        containerBodyEsb.style.width = `${newWidth}px`;
+    }
 }

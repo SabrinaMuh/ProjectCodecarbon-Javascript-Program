@@ -4,23 +4,33 @@
         <title>Codecarbon</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <style>
-            .container{
+            .containerRam{
                 width: 700px;
                 max-width: 700px;
                 overflow-x: scroll;
             }
 
-            .containerDiff{
+            .containerCpu{
                 width: 700px;
                 max-width: 700px;
                 overflow-x: scroll;
             }
 
-            .containerBody{
+            .containerEsb{
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerBodyRam{
                 height: 400px;
             }
 
-            .containerBodyDiff{
+            .containerBodyCpu{
+                height: 400px;
+            }
+
+            .containerBodyEsb{
                 height: 400px;
             }
 
@@ -39,9 +49,33 @@
         <button onclick="window.location.href='/api/create/organisation';">New CodeCarbon</button>
         <button class="btn btn-success" onclick="window.open('https://dashboard.codecarbon.io/','_blank')">Codecarbon API Dashboard</button>
         <br>
-        <div><canvas id="myChartRam" width="400" height="400" style="display: none;"></canvas></div>
-        <div><canvas id="myChartCpu" width="400" height="400" style="display: none;"></canvas></div>
-        <div><canvas id="myChartEsb" width="400" height="400" style="display: none;"></canvas></div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div class = "containerRam">
+                    <div class = "containerBodyRam">
+                        <canvas id="myChartRam"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div class = "containerCpu">
+                    <div class = "containerBodyCpu">
+                        <canvas id="myChartCpu"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div class = "containerEsb">
+                    <div class = "containerBodyEsb">
+                        <canvas id="myChartEsb"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="api_script.js"></script>
         <span>Organization ID: <script>getOrganizationID()</script>, </span>
         <span>Team ID: <script>getTeamID()</script>, </span>

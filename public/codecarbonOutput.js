@@ -189,7 +189,7 @@ function buildLineChart(){
 
 
     if(lengthXValues > 10){
-        const newWidth = 1200 + ((lengthXValues - 10) * 30);
+        const newWidth = 700 + ((lengthXValues - 10) * 50);
         containerBody.style.width = `${newWidth}px`;
     }
 
@@ -246,7 +246,7 @@ function buildLineChart(){
   
   
       if(lengthDiffXValues > 10){
-          const newWidth = 1200 + ((lengthDiffXValues - 10) * 30);
+          const newWidth = 700 + ((lengthDiffXValues - 10) * 50);
           containerBodyDiff.style.width = `${newWidth}px`;
       }
 }

@@ -5,14 +5,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <style>
             .container{
-                width: 1200px;
-                max-width: 1200px;
+                width: 700px;
+                max-width: 700px;
                 overflow-x: scroll;
             }
 
             .containerDiff{
-                width: 1200px;
-                max-width: 1200px;
+                width: 700px;
+                max-width: 700px;
                 overflow-x: scroll;
             }
 
@@ -27,7 +27,6 @@
             .legend { list-style: none; }
             .legend li { float: left; margin-right: 10px; }
             .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
-            /* your colors */
             .legend .red { background-color: red; }
             .legend .orange { background-color: orange; }
             .legend .blue { background-color: blue; }
@@ -42,6 +41,7 @@
             <li><span class="orange"></span>CPU</li>
             <li><span class="blue"></span>Energy Usage</li>
         </ul>
+        <br>
         <div class="chartWrapper">
             <div class="chartAreaWrapper">
                 <div class = "container">
@@ -58,6 +58,7 @@
             <li><span class="orange"></span>Difference CPU</li>
             <li><span class="blue"></span>Difference Energy Usage</li>
         </ul>
+        <br>
         <div class="chartWrapperDiff">
             <div class="chartAreaWrapperDiff">
                 <div class = "containerDiff">
@@ -68,11 +69,12 @@
             </div>
         </div>
         <p id="loading"></p>
+        <h3>Current Values:</h2>
         <p>RAM: <span id="ram_index">0</span> kWh</p>
         <p>RAM Power: <span id="ram_power_index">0</span> W</p>
         <p>CPU: <span id="cpu_index">0</span> kWh</p>
         <p>CPU Power: <span id="cpu_power_index">0</span> W</p>
-        <p>Electricity used since beginning: <span id="esb_index">0</span> kWh</p>
+        <p>Energy Usage: <span id="esb_index">0</span> kWh</p>
         <script src="codecarbonOutput.js"></script>
         <p><button onclick="window.location.href='/api';">Switch to Code Carbon API</button></p>
     </body>
