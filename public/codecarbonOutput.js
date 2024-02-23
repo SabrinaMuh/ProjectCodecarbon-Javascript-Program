@@ -86,7 +86,7 @@ function getData(){
                         document.getElementById('cpu_index').innerText = cpu;
                         document.getElementById('cpu_power_index').innerText = cpuPower;
                         document.getElementById('esb_index').innerText = esb;
-                        document.getElementById('loading').innerText = "";
+                        document.getElementById('status').innerText = "";
 
                         localStorage.setItem("counter", counter);
                         localStorage.setItem("xValues", JSON.stringify(xValues));
@@ -104,14 +104,14 @@ function getData(){
                             getData();
                         }, 10000);
                     } else if(textRAM.includes("Aborted!") || textCPU.includes("Aborted!") || textESB.includes("Aborted!")){
-                        document.getElementById("loading").innerText = "Codecarbon is aborted";
+                        document.getElementById("status").innerText = "Codecarbon is aborted";
                     } else{
                         setTimeout(() => {
                             getData();
                         }, 1000);
                     }
                 }else{
-                    document.getElementById('loading').innerText = "Data is loading...";
+                    document.getElementById('status').innerText = "Data is loading...";
                     setTimeout(() => {
                         getData();
                     }, 10000);
@@ -243,7 +243,6 @@ function buildLineChart(){
     
       const containerBodyDiff = document.querySelector('.containerBodyDiff');
       const lengthDiffXValues = diffXValues.length;
-  
   
       if(lengthDiffXValues > 10){
           const newWidth = 700 + ((lengthDiffXValues - 10) * 50);
