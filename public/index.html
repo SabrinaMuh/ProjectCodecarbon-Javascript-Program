@@ -16,11 +16,6 @@
                 overflow-x: scroll;
             }
 
-            .legend{
-                width: 1200px;
-                max-width: 1200px;
-            }
-
             .containerBody{
                 height: 400px;
             }
@@ -29,33 +24,24 @@
                 height: 400px;
             }
 
-            .box{
-                display: inline;
-                float: left;
-                height: 20px;
-                width: 20px;
-                margin-bottom: 15px;
-                border: 1px solid black;
-                clear: both;
-            }
-
-            .red {
-                background-color: red;
-            }
-
-            .orange {
-                background-color: orange;
-            }
-
-            .blue {
-                background-color: blue;
-            }
+            .legend { list-style: none; }
+            .legend li { float: left; margin-right: 10px; }
+            .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+            /* your colors */
+            .legend .red { background-color: red; }
+            .legend .orange { background-color: orange; }
+            .legend .blue { background-color: blue; }
         </style>
     </head>
     <body>
         <h1>Codecarbon - Logger (Version 1)</h1>
         <!--div tag has to be before script to prevent error (js-file can't find it if we write the script before)-->
         <p>Data Chart</p>
+        <ul class="legend">
+            <li><span class="red"></span>RAM</li>
+            <li><span class="orange"></span>CPU</li>
+            <li><span class="blue"></span>Energy Usage</li>
+        </ul>
         <div class="chartWrapper">
             <div class="chartAreaWrapper">
                 <div class = "container">
@@ -65,13 +51,13 @@
                 </div>
             </div>
         </div>
-        <!--div class="legend">
-            <div><div class="box red"></div>RAM</div>
-            <div><div class="box orange"></div>CPU</div>
-            <div><div class="box blue"></div>Engery used sinced beginning</div>
-        </div-->
-        <br><br>
+        <br>
         <p>Difference Chart</p>
+        <ul class="legend">
+            <li><span class="red"></span>Difference RAM</li>
+            <li><span class="orange"></span>Difference CPU</li>
+            <li><span class="blue"></span>Difference Energy Usage</li>
+        </ul>
         <div class="chartWrapperDiff">
             <div class="chartAreaWrapperDiff">
                 <div class = "containerDiff">

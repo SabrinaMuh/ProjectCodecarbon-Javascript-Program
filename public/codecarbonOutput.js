@@ -152,7 +152,7 @@ function buildLineChart(){
             fill: false
           },{
             borderColor: "blue",
-            label:'Electricity used since beginning',
+            label:'Energy Usage',
             data: esbValues,
             fill: false
           },
@@ -160,9 +160,9 @@ function buildLineChart(){
         options:{
             responsive: true,
             maintainAspectRatio: false,
-            /*legend: {
+            legend: {
                 display: false,
-            },*/
+            },
             tooltips: {
                 titleFontSize: 0,
                 titleMarginBottom: 0,
@@ -209,7 +209,7 @@ function buildLineChart(){
             fill: false
           },{
             borderColor: "blue",
-            label:'Difference Electricity used since beginning',
+            label:'Difference Energy Usage',
             data: diffEsbValues,
             fill: false
           },
@@ -217,6 +217,9 @@ function buildLineChart(){
         options:{
             responsive: true,
             maintainAspectRatio: false,
+            legend: {
+                display: false,
+            },
             tooltips: {
                 titleFontSize: 0,
                 titleMarginBottom: 0,
