@@ -302,9 +302,9 @@ function saveDataForChart(data){
 
 function buildLineChart(){
     //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
-    document.getElementById("myChartRam").style.display = "block";
-    document.getElementById("myChartCpu").style.display = "block";
-    document.getElementById("myChartEsb").style.display = "block";
+    document.getElementById("containerRam").style.display = "block";
+    document.getElementById("containerCpu").style.display = "block";
+    document.getElementById("containerEsb").style.display = "block";
 
     new Chart("myChartRam", {
         type: "line",
