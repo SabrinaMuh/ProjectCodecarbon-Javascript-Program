@@ -3,6 +3,34 @@
     <head>
         <title>Codecarbon</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <style>
+            .container{
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerDiff{
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerBody{
+                height: 400px;
+            }
+
+            .containerBodyDiff{
+                height: 400px;
+            }
+
+            .legend { list-style: none; }
+            .legend li { float: left; margin-right: 10px; }
+            .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+            .legend .red { background-color: red; }
+            .legend .orange { background-color: orange; }
+            .legend .blue { background-color: blue; }
+        </style>
     </head>
     <body>
         <h1>Codecarbon - API Start Page (Version 2)</h1>
@@ -19,7 +47,7 @@
         <span>Team ID: <script>getTeamID()</script>, </span>
         <span>Project ID: <script>getProjectID()</script>, </span>
         <span>Experiment ID: <script>getExperimentID()</script></span>
-        <br>
+        <br><br>
         <button onclick="getExperimentData();">Get Experiment Data</button>
         <button onclick="getRunData();">Get Run Data</button>
         <br><br>
@@ -29,6 +57,7 @@
             <span id="currenRunID"></span>
         </form>
         <button onclick="getEmissionsData();">Get Emissions Data</button>
+        <h3>Current Values:</h2>
         <p>RAM: <span id="ram">0</span> kWh</p>
         <p>RAM Power: <span id="ram_power">0</span> W</p>
         <p>CPU: <span id="cpu">0</span> kWh</p>

@@ -38,7 +38,7 @@ async function createOrganisation(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         organization_id = data.id;
         console.log(organization_id);
@@ -74,7 +74,7 @@ async function createTeam(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         team_id = data.id;
         console.log(team_id);
@@ -110,7 +110,7 @@ async function createProject(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         project_id = data.id;
         console.log(project_id);
@@ -178,7 +178,7 @@ async function createExperiment(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         experiment_id = data.id;
         console.log(experiment_id);
