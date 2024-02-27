@@ -186,6 +186,11 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
                 display: false,
             },
             tooltips: {
+                callbacks:{
+                    label: (tooltipItems, data) => {
+                        return data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + ' kWh';
+                    }
+                },
                 titleFontSize: 0,
                 titleMarginBottom: 0,
                 bodyFontSize: 14
@@ -197,6 +202,11 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
                     }
                 }],
                 yAxes: [{
+                    scaleLabel:{
+                        display: true,
+                        labelString: 'kWh',
+                        fontSize: 14
+                    },
                     ticks: {
                         fontSize: 14,
                         beginAtZero: true
@@ -245,6 +255,11 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
                 display: false,
             },
             tooltips: {
+                callbacks:{
+                    label: (tooltipItems, data) => {
+                        return data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + ' kWh';
+                    }
+                },
                 titleFontSize: 0,
                 titleMarginBottom: 0,
                 bodyFontSize: 14
@@ -256,6 +271,11 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
                     }
                 }],
                 yAxes: [{
+                    scaleLabel:{
+                        display: true,
+                        labelString: 'kWh',
+                        fontSize: 14
+                    },
                     ticks: {
                         fontSize: 14,
                         beginAtZero: true
