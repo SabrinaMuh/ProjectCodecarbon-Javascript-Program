@@ -26,6 +26,13 @@ The API version works with the API from Codecarbon.
 
 This section contains an installation guide on how to install the Python virtual environment using Anaconda.
 
+The first option is to use the provided `environment.yml` file located at the root level of this project.
+```bash
+conda env create -f environment.yml 
+```
+
+The second option is to create an Anaconda environment yourself.
+
 ```bash
 # create a Python virtual environment using Anaconda
 conda create --name codecarbon
