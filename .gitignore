@@ -1,2 +1,8 @@
-
+# ignore the log file created while monitoring
 public/log.txt
+
+# ignoring node modules
+node_modules/*
+
+# ignoring IntellilJ settings
+.idea/*
