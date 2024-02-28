@@ -1,9 +1,6 @@
 from codecarbon import EmissionsTracker
 from codecarbon.output import EmissionsData, HTTPOutput
 from time import sleep
-import os
-
-import pandas as pd
 
 if __name__ == '__main__':
 
