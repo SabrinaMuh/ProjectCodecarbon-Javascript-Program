@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { log } = require('console');
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
@@ -19,6 +20,16 @@ var publicPath = path.join(__dirname, 'public');
 
 app.get('/api', function (req, res) {
     res.sendFile(path.join(publicPath + '/api.html'));
+});
+
+app.post('/cc', (req, res) => {
+
+    console.log(req.body);
+    // TODO
+
+    // success, echo back the data
+    res.status(201).send(req.body);
+
 });
 
 app.get('/api/create/organisation', function (req, res) {
