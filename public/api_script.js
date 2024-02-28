@@ -38,7 +38,7 @@ async function createOrganisation(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         organization_id = data.id;
         console.log(organization_id);
@@ -74,7 +74,7 @@ async function createTeam(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         team_id = data.id;
         console.log(team_id);
@@ -110,7 +110,7 @@ async function createProject(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         project_id = data.id;
         console.log(project_id);
@@ -178,7 +178,7 @@ async function createExperiment(){
     console.log(response.status);
     console.log(response.statusText);
 
-    if (response.status === 200){
+    if (response.statusText === "Created"){
         let data = await response.json();
         experiment_id = data.id;
         console.log(experiment_id);
@@ -276,7 +276,6 @@ function saveDataForChart(data){
     let item;
 
     var counter = 0;
-    var amountToDelete = 0;
 
     for (let index = items.length - 1; index >= 0; index--) {
         item = items[index];
@@ -284,14 +283,6 @@ function saveDataForChart(data){
         cpuValues.push(item.cpu_energy);
         esbValues.push(item.energy_consumed);
         xValues.push(counter++);
-    }
-
-    if(items.length > 5){
-        amountToDelete = items.length - 5;
-        xValues.splice(0,amountToDelete);
-        ramValues.splice(0,amountToDelete);
-        cpuValues.splice(0, amountToDelete);
-        esbValues.splice(0, amountToDelete);
     }
 
     console.log(ramValues);
@@ -302,9 +293,9 @@ function saveDataForChart(data){
 
 function buildLineChart(){
     //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
-    document.getElementById("myChartRam").style.display = "block";
-    document.getElementById("myChartCpu").style.display = "block";
-    document.getElementById("myChartEsb").style.display = "block";
+    document.getElementById("containerRam").style.display = "block";
+    document.getElementById("containerCpu").style.display = "block";
+    document.getElementById("containerEsb").style.display = "block";
 
     new Chart("myChartRam", {
         type: "line",
@@ -356,4 +347,16 @@ function buildLineChart(){
             maintainAspectRatio: false
         }
     });
+
+    const containerBodyRam = document.querySelector('.containerBodyRam');
+    const containerBodyCpu = document.querySelector('.containerBodyCpu');
+    const containerBodyEsb = document.querySelector('.containerBodyEsb');
+    const lengthXValues = xValues.length;
+
+    if(lengthXValues > 5){
+        const newWidth = 700 + ((lengthXValues - 5) * 50);
+        containerBodyRam.style.width = `${newWidth}px`;
+        containerBodyCpu.style.width = `${newWidth}px`;
+        containerBodyEsb.style.width = `${newWidth}px`;
+    }
 }

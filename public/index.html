@@ -3,20 +3,89 @@
     <head>
         <title>Codecarbon</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <style>
+            .container{
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerDiff{
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerBody{
+                height: 400px;
+            }
+
+            .containerBodyDiff{
+                height: 400px;
+            }
+
+            .legend { list-style: none; }
+            .legend li { float: left; margin-right: 10px; }
+            .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+            .legend .red { background-color: red; }
+            .legend .orange { background-color: orange; }
+            .legend .blue { background-color: blue; }
+        </style>
     </head>
     <body>
         <h1>Codecarbon - Logger (Version 1)</h1>
-        <!--div tag has to be before script to prevent error (js-file can't find it if we write the script before)-->
-        <p>Data Chart</p>
-        <div><canvas id="myChart" width="400" height="400"></canvas></div>
-        <p>Difference Chart</p>
-        <div><canvas id="myChartDiff" width="400" height="400"></canvas></div>
-        <p id="loading"></p>
+        <form>
+           <h4>Filter Data</h4>
+           <label for="start">Start:</label>
+           <input type="number" id="start" name="start" min="0">
+           <label for="end">End:</label>
+           <input type="number" id="end" name="end" min="0">
+           <p id="errorMessage" style="color: red; display: none;">Please valid values</p>
+           <br>
+           <button type='button' onclick="filterData()">Submit</button>
+           <button type='button' onclick="removeFilter()">Remove Filter</button>
+        </form>
+        <h2>Data Chart</h2>
+        <ul class="legend">
+            <li><span class="red"></span>RAM</li>
+            <li><span class="orange"></span>CPU</li>
+            <li><span class="blue"></span>Energy Usage</li>
+        </ul>
+        <br>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div class = "container">
+                    <div class = "containerBody">
+                        <!--Tags with charts have to be before script to prevent error (js-file can't find it if we write the script before)-->
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h2>Difference Chart</h2>
+        <ul class="legend">
+            <li><span class="red"></span>Difference RAM</li>
+            <li><span class="orange"></span>Difference CPU</li>
+            <li><span class="blue"></span>Difference Energy Usage</li>
+        </ul>
+        <br>
+        <div class="chartWrapperDiff">
+            <div class="chartAreaWrapperDiff">
+                <div class = "containerDiff">
+                    <div class = "containerBodyDiff">
+                        <canvas id="myChartDiff"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p id="status"></p>
+        <h3>Current Values:</h2>
         <p>RAM: <span id="ram_index">0</span> kWh</p>
         <p>RAM Power: <span id="ram_power_index">0</span> W</p>
         <p>CPU: <span id="cpu_index">0</span> kWh</p>
         <p>CPU Power: <span id="cpu_power_index">0</span> W</p>
-        <p>Electricity used since beginning: <span id="esb_index">0</span> kWh</p>
+        <p>Energy Usage: <span id="esb_index">0</span> kWh</p>
         <script src="codecarbonOutput.js"></script>
         <p><button onclick="window.location.href='/api';">Switch to Code Carbon API</button></p>
     </body>

@@ -3,6 +3,47 @@
     <head>
         <title>Codecarbon</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <style>
+            .containerRam{
+                display: none;
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerCpu{
+                display: none;
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerEsb{
+                display: none;
+                width: 700px;
+                max-width: 700px;
+                overflow-x: scroll;
+            }
+
+            .containerBodyRam{
+                height: 400px;
+            }
+
+            .containerBodyCpu{
+                height: 400px;
+            }
+
+            .containerBodyEsb{
+                height: 400px;
+            }
+
+            .legend { list-style: none; }
+            .legend li { float: left; margin-right: 10px; }
+            .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+            .legend .red { background-color: red; }
+            .legend .orange { background-color: orange; }
+            .legend .blue { background-color: blue; }
+        </style>
     </head>
     <body>
         <h1>Codecarbon - API Start Page (Version 2)</h1>
@@ -11,15 +52,39 @@
         <button onclick="window.location.href='/api/create/organisation';">New CodeCarbon</button>
         <button class="btn btn-success" onclick="window.open('https://dashboard.codecarbon.io/','_blank')">Codecarbon API Dashboard</button>
         <br>
-        <div><canvas id="myChartRam" width="400" height="400" style="display: none;"></canvas></div>
-        <div><canvas id="myChartCpu" width="400" height="400" style="display: none;"></canvas></div>
-        <div><canvas id="myChartEsb" width="400" height="400" style="display: none;"></canvas></div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div id="containerRam" class = "containerRam">
+                    <div class = "containerBodyRam">
+                        <canvas id="myChartRam"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div id="containerCpu" class = "containerCpu">
+                    <div class = "containerBodyCpu">
+                        <canvas id="myChartCpu"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+                <div id="containerEsb" class = "containerEsb">
+                    <div class = "containerBodyEsb">
+                        <canvas id="myChartEsb"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="api_script.js"></script>
         <span>Organization ID: <script>getOrganizationID()</script>, </span>
         <span>Team ID: <script>getTeamID()</script>, </span>
         <span>Project ID: <script>getProjectID()</script>, </span>
         <span>Experiment ID: <script>getExperimentID()</script></span>
-        <br>
+        <br><br>
         <button onclick="getExperimentData();">Get Experiment Data</button>
         <button onclick="getRunData();">Get Run Data</button>
         <br><br>
@@ -29,6 +94,7 @@
             <span id="currenRunID"></span>
         </form>
         <button onclick="getEmissionsData();">Get Emissions Data</button>
+        <h3>Current Values:</h2>
         <p>RAM: <span id="ram">0</span> kWh</p>
         <p>RAM Power: <span id="ram_power">0</span> W</p>
         <p>CPU: <span id="cpu">0</span> kWh</p>
