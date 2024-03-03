@@ -6,7 +6,9 @@ const { log } = require('console');
 var run_id = "";
 var lastRun_id = "";
 var cpu_energy = [];
+var cpu_power = 0;
 var ram_energy = [];
+var ram_power = 0;
 var energy_consumed = [];
 var counter = 0;
 var xValues = [];
@@ -33,7 +35,9 @@ app.get('/api', function (req, res) {
 app.get('/cc', (req, res) => {
     res.status(200).send({
         cpu_energy,
+        cpu_power,
         ram_energy,
+        ram_power,
         energy_consumed,
         xValues
     })
@@ -55,7 +59,9 @@ app.post('/cc', (req, res) => {
     }
 
     cpu_energy.push(req.body.cpu_energy);
+    cpu_power = req.body.cpu_power;
     ram_energy.push(req.body.ram_energy);
+    ram_power = req.body.ram_power;
     energy_consumed.push(req.body.energy_consumed);
     xValues.push(counter++);
 

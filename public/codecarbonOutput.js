@@ -1,11 +1,6 @@
 //Start values
-var ram = 0;
 var ramPower = 0;
-var cpu = 0;
 var cpuPower = 0;
-var esb = 0;
-var counter = 0;
-var counterDiff = 1;
 
 var ramValues = [];
 var cpuValues = [];
@@ -31,28 +26,29 @@ async function getData(){
     if(response.status == 200){
         let data = await response.json();
         console.log(data);
+        ramPower = data.ram_power;
         ramValues = data.ram_energy;
+        cpuPower = data.cpu_power;
         cpuValues = data.cpu_energy;
         esbValues = data.energy_consumed;
         xValues = data.xValues;
         size = xValues.length;
         if(size > 0 && size != oldSize){
-            if(xValues.length < diffXValues.length){
-                diffRamValues = [0];
-                diffCpuValues = [0];
-                diffEsbValues = [0];
-                diffXValues = [0];
-                counterDiff = 1;
-            }
+            document.getElementById('ram_index').innerText = ramValues[ramValues.length - 1];
+            document.getElementById('ram_power_index').innerText = ramPower;
+            document.getElementById('cpu_index').innerText = cpuValues[cpuValues.length - 1];
+            document.getElementById('cpu_power_index').innerText = cpuPower;
+            document.getElementById('esb_index').innerText = esbValues[esbValues.length - 1];
             
-            if(xValues.length>=2){
-                calculateDiff();
-            }
+            calculateDiff();
+
             if(running){
                 buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
                 document.getElementById("status").innerText = "Running...";
             }
             oldSize = size;
+        }else{
+            document.getElementById("status").innerText = "Aborted";
         }
         setTimeout(() => {
             getData();
@@ -155,10 +151,16 @@ function getData(){
 }*/
 
 function calculateDiff(){
-    diffXValues.push(counterDiff++);
-    diffRamValues.push(ramValues[ramValues.length - 1] - ramValues[ramValues.length - 2]);
-    diffCpuValues.push(cpuValues[cpuValues.length - 1] - cpuValues[cpuValues.length - 2]);
-    diffEsbValues.push(esbValues[esbValues.length - 1] - esbValues[esbValues.length - 2]);
+    diffRamValues = [0];
+    diffCpuValues = [0];
+    diffEsbValues = [0];
+    diffXValues = [0];
+    for (let i = 1; i < xValues.length; i++){
+        diffXValues.push(i);
+        diffRamValues.push(ramValues[i] - ramValues[i-1]);
+        diffCpuValues.push(cpuValues[i] - cpuValues[i-1]);
+        diffEsbValues.push(esbValues[i] - esbValues[i-1]);
+    }
 }
 
 function filterData(){
