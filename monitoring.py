@@ -9,7 +9,7 @@ if __name__ == '__main__':
     endpoint_url: str = 'http://localhost:8080/cc'
     http_output = HTTPOutput(endpoint_url)
 
-    with EmissionsTracker(measure_power_secs=0.5, save_to_file=False) as tracker:
+    with EmissionsTracker(measure_power_secs=1, save_to_file=False) as tracker:
 
         while True:
 

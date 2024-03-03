@@ -11,6 +11,8 @@ var ramValues = [];
 var cpuValues = [];
 var esbValues = [];
 var xValues = [];
+var size = 0;
+var oldSize = 0;
 
 var diffRamValues = [0];
 var diffCpuValues = [0];
@@ -22,6 +24,43 @@ var running = true;
 getData();
 buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
 
+async function getData(){
+    const response = await fetch('/cc');
+
+    console.log(response.status);
+    if(response.status == 200){
+        let data = await response.json();
+        console.log(data);
+        ramValues = data.ram_energy;
+        cpuValues = data.cpu_energy;
+        esbValues = data.energy_consumed;
+        xValues = data.xValues;
+        size = xValues.length;
+        if(size > 0 && size != oldSize){
+            if(xValues.length < diffXValues.length){
+                diffRamValues = [0];
+                diffCpuValues = [0];
+                diffEsbValues = [0];
+                diffXValues = [0];
+                counterDiff = 1;
+            }
+            
+            if(xValues.length>=2){
+                calculateDiff();
+            }
+            if(running){
+                buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
+                document.getElementById("status").innerText = "Running...";
+            }
+            oldSize = size;
+        }
+        setTimeout(() => {
+            getData();
+        }, 1000);
+    }
+}
+
+/*Logger Version
 function getData(){
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "log.txt", false);
@@ -113,7 +152,7 @@ function getData(){
         }
     }
     rawFile.send(null);
-}
+}*/
 
 function calculateDiff(){
     diffXValues.push(counterDiff++);

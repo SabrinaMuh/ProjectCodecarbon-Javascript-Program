@@ -3,6 +3,14 @@ const cors = require('cors');
 const path = require('path');
 const { log } = require('console');
 
+var run_id = "";
+var lastRun_id = "";
+var cpu_energy = [];
+var ram_energy = [];
+var energy_consumed = [];
+var counter = 0;
+var xValues = [];
+
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const app = express();
@@ -22,10 +30,34 @@ app.get('/api', function (req, res) {
     res.sendFile(path.join(publicPath + '/api.html'));
 });
 
+app.get('/cc', (req, res) => {
+    res.status(200).send({
+        cpu_energy,
+        ram_energy,
+        energy_consumed,
+        xValues
+    })
+});
+
 app.post('/cc', (req, res) => {
 
     console.log(req.body);
-    // TODO
+
+    lastRun_id = run_id;
+    run_id = req.body.run_id;
+
+    if(run_id != lastRun_id){
+        cpu_energy = [];
+        ram_energy = [];
+        energy_consumed = [];
+        xValues = [];
+        counter = 0;
+    }
+
+    cpu_energy.push(req.body.cpu_energy);
+    ram_energy.push(req.body.ram_energy);
+    energy_consumed.push(req.body.energy_consumed);
+    xValues.push(counter++);
 
     // success, echo back the data
     res.status(201).send(req.body);
