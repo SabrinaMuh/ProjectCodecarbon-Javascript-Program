@@ -64,16 +64,15 @@ async function getData(){
                     currentDiffRamValues = diffRamValues.slice(size - 10, size + 1);
                     currentDiffCpuValues = diffCpuValues.slice(size - 10, size + 1);
                     currentDiffEsbValues = diffEsbValues.slice(size - 10, size + 1);
-
-                    console
                     
                     updateLineChart(currentXValues, currentRamValues, currentCpuValues, currentEsbValues, currentXValues, currentDiffRamValues, currentDiffCpuValues, currentDiffEsbValues);
                 }else{
                     updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues); 
                 }
-
+                
                 document.getElementById("status").innerText = "Running...";
             }
+
             oldSize = size;
         }else{
             document.getElementById("status").innerText = "Aborted";
@@ -216,7 +215,6 @@ function filterData(){
 
 function removeFilter(){
     running = true;
-    getData();
 
     if(size > 10){
         currentXValues = xValues.slice(size - 10, size + 1);
@@ -226,8 +224,6 @@ function removeFilter(){
         currentDiffRamValues = diffRamValues.slice(size - 10, size + 1);
         currentDiffCpuValues = diffCpuValues.slice(size - 10, size + 1);
         currentDiffEsbValues = diffEsbValues.slice(size - 10, size + 1);
-
-        console
         
         updateLineChart(currentXValues, currentRamValues, currentCpuValues, currentEsbValues, currentXValues, currentDiffRamValues, currentDiffCpuValues, currentDiffEsbValues);
     }else{
@@ -236,6 +232,8 @@ function removeFilter(){
 }
 
 function showWholeChart(){
+    running = false;
+    document.getElementById('status').innerText = "Fullmodus...";
     updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
 }
 
