@@ -14,7 +14,19 @@ var diffCpuValues = [0];
 var diffEsbValues = [0];
 var diffXValues = [0];
 
+var currentXValues = [];
+var currentRamValues = [];
+var currentCpuValues = [];
+var currentEsbValues = [];
+var currentDiffXValues = [];
+var currentDiffRamValues = [];
+var currentDiffCpuValues = [];
+var currentDiffEsbValues = [];
+
 var running = true;
+
+var myChart;
+var diffChart;
 
 getData();
 buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
@@ -25,7 +37,6 @@ async function getData(){
     console.log(response.status);
     if(response.status == 200){
         let data = await response.json();
-        console.log(data);
         ramPower = data.ram_power;
         ramValues = data.ram_energy;
         cpuPower = data.cpu_power;
@@ -33,17 +44,35 @@ async function getData(){
         esbValues = data.energy_consumed;
         xValues = data.xValues;
         size = xValues.length;
+        
         if(size > 0 && size != oldSize){
+            console.log(data);
             document.getElementById('ram_index').innerText = ramValues[ramValues.length - 1];
             document.getElementById('ram_power_index').innerText = ramPower;
             document.getElementById('cpu_index').innerText = cpuValues[cpuValues.length - 1];
             document.getElementById('cpu_power_index').innerText = cpuPower;
             document.getElementById('esb_index').innerText = esbValues[esbValues.length - 1];
-            
+
             calculateDiff();
 
             if(running){
-                buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
+                if(size > 10){
+                    currentXValues = xValues.slice(size - 10, size + 1);
+                    currentRamValues = ramValues.slice(size - 10, size + 1);
+                    currentCpuValues = cpuValues.slice(size - 10, size + 1);
+                    currentEsbValues = esbValues.slice(size - 10, size + 1);
+                    currentDiffRamValues = diffRamValues.slice(size - 10, size + 1);
+                    currentDiffCpuValues = diffCpuValues.slice(size - 10, size + 1);
+                    currentDiffEsbValues = diffEsbValues.slice(size - 10, size + 1);
+
+                    console
+                    
+                    updateLineChart(currentXValues, currentRamValues, currentCpuValues, currentEsbValues, currentXValues, currentDiffRamValues, currentDiffCpuValues, currentDiffEsbValues);
+                }else{
+                    updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues); 
+                }
+
+                //updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
                 document.getElementById("status").innerText = "Running...";
             }
             oldSize = size;
@@ -177,9 +206,7 @@ function filterData(){
         var diffCpuValuesFilter = diffCpuValues.slice(start,end+1);
         var diffEsbValuesFilter = diffEsbValues.slice(start,end+1);
 
-        //You have to use buildLineChart twice here to resize plot; Causes: Unknown
-        buildLineChart(xValuesFilter, ramValuesFilter, cpuValuesFilter, esbValuesFilter, diffXValuesFilter, diffRamValuesFilter, diffCpuValuesFilter, diffEsbValuesFilter);
-        buildLineChart(xValuesFilter, ramValuesFilter, cpuValuesFilter, esbValuesFilter, diffXValuesFilter, diffRamValuesFilter, diffCpuValuesFilter, diffEsbValuesFilter);
+        updateLineChart(xValuesFilter, ramValuesFilter, cpuValuesFilter, esbValuesFilter, diffXValuesFilter, diffRamValuesFilter, diffCpuValuesFilter, diffEsbValuesFilter);
 
         document.getElementById("errorMessage").style.display = "none";
         document.getElementById('status').innerText = "Filtermodus...";
@@ -191,15 +218,14 @@ function filterData(){
 function removeFilter(){
     running = true;
     getData();
-    //You have to use buildLineChart twice here to resize plot; Causes: Unknown
-    buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
-    buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
+
+    updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
 }
 
-function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues){
+function buildLineChart(){
     //const exampleValues = [0,1,2,3,4,5,6,7,8,9,10];
 
-    new Chart("myChart", {
+    myChart = new Chart("myChart", {
         type: "line",
         data: {
           labels: xValues,
@@ -260,7 +286,6 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
     const containerBody = document.querySelector('.containerBody');
     const lengthXValues = xValues.length;
 
-
     if(lengthXValues > 5){
         const newWidth = 700 + ((lengthXValues - 5) * 50);
         containerBody.style.width = `${newWidth}px`;
@@ -268,7 +293,8 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
         containerBody.style.width = '700px';
     }
 
-    new Chart("myChartDiff", {
+
+    diffChart = new Chart("myChartDiff", {
         type: "line",
         data: {
           labels: diffXValues,
@@ -325,9 +351,9 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
             },
         }
       });
-    
-      const containerBodyDiff = document.querySelector('.containerBodyDiff');
-      const lengthDiffXValues = diffXValues.length;
+
+    const containerBodyDiff = document.querySelector('.containerBodyDiff');
+    const lengthDiffXValues = diffXValues.length;
   
     if(lengthDiffXValues > 5){
         const newWidth = 700 + ((lengthDiffXValues - 5) * 50);
@@ -335,6 +361,20 @@ function buildLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, d
     }else{
         containerBodyDiff.style.width = '700px';
     }
+}
+
+function updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues){
+    myChart.data.labels = xValues;
+    myChart.data.datasets[0].data = ramValues;
+    myChart.data.datasets[1].data = cpuValues;
+    myChart.data.datasets[2].data = esbValues;
+    myChart.update();
+
+    diffChart.data.labels = diffXValues;
+    diffChart.data.datasets[0].data = diffRamValues;
+    diffChart.data.datasets[1].data = diffCpuValues;
+    diffChart.data.datasets[2].data = diffEsbValues;
+    diffChart.update();
 }
 
 /* first version of logger (python version)
