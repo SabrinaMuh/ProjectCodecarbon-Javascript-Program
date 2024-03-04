@@ -219,7 +219,21 @@ function removeFilter(){
     running = true;
     getData();
 
-    updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
+    if(size > 10){
+        currentXValues = xValues.slice(size - 10, size + 1);
+        currentRamValues = ramValues.slice(size - 10, size + 1);
+        currentCpuValues = cpuValues.slice(size - 10, size + 1);
+        currentEsbValues = esbValues.slice(size - 10, size + 1);
+        currentDiffRamValues = diffRamValues.slice(size - 10, size + 1);
+        currentDiffCpuValues = diffCpuValues.slice(size - 10, size + 1);
+        currentDiffEsbValues = diffEsbValues.slice(size - 10, size + 1);
+
+        console
+        
+        updateLineChart(currentXValues, currentRamValues, currentCpuValues, currentEsbValues, currentXValues, currentDiffRamValues, currentDiffCpuValues, currentDiffEsbValues);
+    }else{
+        updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues); 
+    }
 }
 
 function buildLineChart(){
@@ -283,15 +297,15 @@ function buildLineChart(){
         }
     });
 
-    const containerBody = document.querySelector('.containerBody');
+    /*const containerBody = document.querySelector('.containerBody');
     const lengthXValues = xValues.length;
 
-    if(lengthXValues > 5){
-        const newWidth = 700 + ((lengthXValues - 5) * 50);
+    if(lengthXValues > 10){
+        const newWidth = 700 + ((lengthXValues - 10) * 50);
         containerBody.style.width = `${newWidth}px`;
     }else{
         containerBody.style.width = '700px';
-    }
+    }*/
 
 
     diffChart = new Chart("myChartDiff", {
@@ -352,15 +366,15 @@ function buildLineChart(){
         }
       });
 
-    const containerBodyDiff = document.querySelector('.containerBodyDiff');
+    /*const containerBodyDiff = document.querySelector('.containerBodyDiff');
     const lengthDiffXValues = diffXValues.length;
   
-    if(lengthDiffXValues > 5){
-        const newWidth = 700 + ((lengthDiffXValues - 5) * 50);
+    if(lengthDiffXValues > 10){
+        const newWidth = 700 + ((lengthDiffXValues - 10) * 50);
         containerBodyDiff.style.width = `${newWidth}px`;
     }else{
         containerBodyDiff.style.width = '700px';
-    }
+    }*/
 }
 
 function updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues){
