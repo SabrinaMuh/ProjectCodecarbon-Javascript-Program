@@ -72,7 +72,6 @@ async function getData(){
                     updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues); 
                 }
 
-                //updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
                 document.getElementById("status").innerText = "Running...";
             }
             oldSize = size;
@@ -234,6 +233,10 @@ function removeFilter(){
     }else{
         updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues); 
     }
+}
+
+function showWholeChart(){
+    updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
 }
 
 function buildLineChart(){
