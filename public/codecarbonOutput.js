@@ -360,7 +360,9 @@ function buildLineChart(){
                     },
                     ticks: {
                         fontSize: 14,
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize: 0.000002,
+                        suggestedMax: 0.00001
                     }
                 }]
             },

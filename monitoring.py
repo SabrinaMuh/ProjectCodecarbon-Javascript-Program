@@ -16,7 +16,7 @@ if __name__ == '__main__':
             sleep(monitoring_interval)
 
             emissions: EmissionsData = tracker._prepare_emissions_data(
-                delta=True)
+                delta=False)
 
             # send emission data to REST endpoint
             http_output.out(emissions)
