@@ -361,8 +361,8 @@ function buildLineChart(){
                     ticks: {
                         fontSize: 14,
                         beginAtZero: true,
-                        stepSize: 0.000001,
-                        suggestedMax: 0.000005
+                        stepSize: 0.0000015,
+                        suggestedMax: 0.00001
                     }
                 }]
             },
