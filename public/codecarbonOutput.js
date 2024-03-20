@@ -24,6 +24,7 @@ var currentDiffCpuValues = [];
 var currentDiffEsbValues = [];
 
 var running = true;
+var fullMode = false;
 
 var myChart;
 var diffChart;
@@ -56,7 +57,7 @@ async function getData(){
             calculateDiff();
 
             if(running){
-                if(size > 10){
+                if(size > 10 && !fullMode){
                     currentXValues = xValues.slice(size - 10, size + 1);
                     currentRamValues = ramValues.slice(size - 10, size + 1);
                     currentCpuValues = cpuValues.slice(size - 10, size + 1);
@@ -191,9 +192,9 @@ function calculateDiff(){
 }
 
 function filterData(){
-    var start = parseInt(document.getElementById("start").value);
-    var end = parseInt(document.getElementById("end").value);
-    if(start >= 0 && end >= 0 && end<xValues.length){
+    var start = parseInt(document.getElementById("start").value)/5;
+    var end = parseInt(document.getElementById("end").value)/5;
+    if(start<=end && start >= 0 && end >= 0 && end<xValues.length && Number.isInteger(start) && Number.isInteger(end)){
         running = false;
         var xValuesFilter = xValues.slice(start, end+1);
         var ramValuesFilter = ramValues.slice(start, end+1);
@@ -215,7 +216,7 @@ function filterData(){
 
 function removeFilter(){
     running = true;
-
+    fullMode = false;
     if(size > 10){
         currentXValues = xValues.slice(size - 10, size + 1);
         currentRamValues = ramValues.slice(size - 10, size + 1);
@@ -232,7 +233,8 @@ function removeFilter(){
 }
 
 function showWholeChart(){
-    running = false;
+    running = true;
+    fullMode = true;
     document.getElementById('status').innerText = "Fullmodus...";
     updateLineChart(xValues, ramValues, cpuValues, esbValues, diffXValues, diffRamValues, diffCpuValues, diffEsbValues);
 }
