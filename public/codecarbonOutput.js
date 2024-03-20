@@ -79,7 +79,7 @@ async function getData(){
         }
         setTimeout(() => {
             getData();
-        }, 1000);
+        }, 5000);
     }
 }
 
