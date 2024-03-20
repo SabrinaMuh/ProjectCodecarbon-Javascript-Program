@@ -63,7 +63,8 @@ app.post('/cc', (req, res) => {
     ram_energy.push(req.body.ram_energy);
     ram_power = req.body.ram_power;
     energy_consumed.push(req.body.energy_consumed);
-    xValues.push(counter++);
+    xValues.push(counter*5);
+    counter++;
 
     // success, echo back the data
     res.status(201).send(req.body);

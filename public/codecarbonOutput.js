@@ -183,7 +183,7 @@ function calculateDiff(){
     diffEsbValues = [0];
     diffXValues = [0];
     for (let i = 1; i < xValues.length; i++){
-        diffXValues.push(i);
+        diffXValues.push(i*5);
         diffRamValues.push(ramValues[i] - ramValues[i-1]);
         diffCpuValues.push(cpuValues[i] - cpuValues[i-1]);
         diffEsbValues.push(esbValues[i] - esbValues[i-1]);
